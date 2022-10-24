@@ -32,6 +32,7 @@
 			<organization>Atsign</organization>
 			<organizationUrl>https://atsign.com</organizationUrl>
 		</developer>
+		<!-- add yourself here if you would want -->
 	</developers>
 
 	<distributionManagement>
@@ -113,21 +114,6 @@
 			</plugin>
 
 			<!-- The Maven GPG plugin is used to sign the components with the following configuration. -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-gpg-plugin</artifactId>
-				<version>1.5</version>
-				<executions>
-					<execution>
-						<id>sign-artifacts</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>sign</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-gpg-plugin</artifactId>
