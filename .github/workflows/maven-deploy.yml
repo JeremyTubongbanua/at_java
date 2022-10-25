@@ -4,15 +4,11 @@
 name: Maven Deploy `at_client` to Nexus OSSRH
 
 on:
-  workflow_run:
-    workflows: ["Maven Deploy"]
-    types: [requested]
-    branches:
-      - 'trunk'
-
+  push:
+    branches: [ 'trunk' ]
+  
 jobs:
   build:
-
     runs-on: ubuntu-latest
     permissions:
       contents: read
