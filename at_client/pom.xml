@@ -114,7 +114,7 @@
 			</plugin>
 
 			<!-- The Maven GPG plugin is used to sign the components with the following configuration. -->
-			<plugin>
+			<!-- <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-gpg-plugin</artifactId>
 				<version>1.5</version>
@@ -136,7 +136,7 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin> -->
 
 		</plugins>
 
