@@ -5,7 +5,9 @@ name: Maven Deploy `at_client` to Nexus OSSRH
 
 on:
   push:
-    branches: [ 'trunk' ]
+    branches:
+      - trunk
+      - maven-dependency
   
 jobs:
   build:
