@@ -10,19 +10,6 @@ on:
       - maven-dependency
   
 jobs:
-  install-keys:
-    defaults:
-      run:
-        working-directory: at_client
-    runs-on: ubuntu-latest
-    steps:
-      - id: install-secret-key
-        name: Install gpg secret key
-        run: |
-          cat <(echo -e "$GPG_PRIVATE_KEY") | gpg --batch --import
-          gpg --list-secret-keys --keyid-format LONG
-        env:
-          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
   deploy:
     defaults:
       run:
@@ -37,7 +24,12 @@ jobs:
         distribution: 'adopt'
         server-id: ossrh # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }}/at_client/ # location for the settings.xml file
-
+    - name: Install gpg secret key
+      run: |
+        cat <(echo -e "$GPG_PRIVATE_KEY") | gpg --batch --import
+        gpg --list-secret-keys --keyid-format LONG
+      env:
+        GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
     - name: Publish to Nexus OSSRH
       run: mvn clean deploy -s $GITHUB_WORKSPACE/at_client/settings.xml -Dgpg.passphrase=${{ env.GPG_PASSPHRASE }}
       env:
