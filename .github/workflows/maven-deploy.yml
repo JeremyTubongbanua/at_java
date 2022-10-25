@@ -19,7 +19,7 @@ jobs:
       - id: install-secret-key
         name: Install gpg secret key
         run: |
-          cat <(echo -e "${{ secrets.MAVEN_GPGP_PRIVATE_KEY }}") | gpg --batch --import
+          cat <(echo -e "${{ secrets.GPG_PRIVATE_KEY }}") | gpg --batch --import
           gpg --list-secret-keys --keyid-format LONG
   deploy:
     defaults:
@@ -37,7 +37,7 @@ jobs:
         settings-path: ${{ github.workspace }}/at_client/ # location for the settings.xml file
 
     - name: Publish to Nexus OSSRH
-      run: mvn clean deploy -s $GITHUB_WORKSPACE/at_client/settings.xml -Dgpg.passphrase=${{ secrets.MAVEN_GPG_PRIVATE_KEY_PASSWORD }}
+      run: mvn clean deploy -s $GITHUB_WORKSPACE/at_client/settings.xml -Dgpg.passphrase=${{ secrets.GPG_PASSPHRASE }}
       env:
         MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
         MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
