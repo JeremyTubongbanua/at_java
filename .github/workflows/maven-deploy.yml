@@ -30,7 +30,7 @@ jobs:
         # gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }} # env variable for GPG private key passphrase
 
     - name: Publish to Apache Maven Central
-      run: mvn deploy -s ${{ github.workspace }}/at_client/settings.xml
+      run: mvn deploy -s ${{ github.workspace }}/at_client/settings.xml -Darguments=-Dgpg.passphrase=${{ secrets.GPG_PASSPHRASE }}
       env:
         MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
         MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}

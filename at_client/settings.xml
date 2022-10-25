@@ -12,4 +12,15 @@
       <passphrase>${env.GPG_PASSPHRASE}</passphrase>
     </server>
   </servers>
+  <profiles>
+    <profile>
+        <id>Jeremy Tubongbanua</id>
+        <activation>
+          <activeByDefault>true</activeByDefault>
+        </activation>
+        <properties>
+          <gpg.keyname>Jeremy Tubongbanua</gpg.keyname>
+        </properties>
+      </profile>
+  </profiles>
 </settings>
