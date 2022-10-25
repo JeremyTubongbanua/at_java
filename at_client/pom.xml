@@ -128,9 +128,9 @@
 						<configuration>
 							<keyname>Jeremy Tubongbanua</keyname>
 							<passphraseServerId>Jeremy Tubongbanua</passphraseServerId>
-							<!-- Prevent gpg from using pinentry programs https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#extra-setup-for-pomxml -->
+							<! Prevent gpg from using pinentry programs https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#extra-setup-for-pomxml
 							<gpgArguments>
-								<arg>--pinentry-mode</arg>
+								<arg>pinentry-mode</arg>>
 								<arg>loopback</arg>
 							</gpgArguments>
 						</configuration>
