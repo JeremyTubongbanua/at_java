@@ -26,10 +26,7 @@ jobs:
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }}/at_client/ # location for the settings.xml file
 
-    - name: Build with Maven
-      run: mvn -B package --file $GITHUB_WORKSPACE/at_client/pom.xml
-
-    - name: Publish to GitHub Packages Apache Maven
+    - name: Publish to Nexus OSSRH
       run: mvn deploy -s $GITHUB_WORKSPACE/at_client/settings.xml
       env:
         GITHUB_TOKEN: ${{ github.token }}
