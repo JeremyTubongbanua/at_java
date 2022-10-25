@@ -19,7 +19,7 @@ jobs:
       - id: install-secret-key
         name: Install gpg secret key
         run: |
-          cat <(echo -e "${{ env.GPG_PRIVATE_KEY }}") | gpg --batch --import
+          cat <(echo -e "$GPG_PRIVATE_KEY") | gpg --batch --import
           gpg --list-secret-keys --keyid-format LONG
         env:
           GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
@@ -35,7 +35,7 @@ jobs:
       with:
         java-version: '8'
         distribution: 'adopt'
-        server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
+        server-id: ossrh # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }}/at_client/ # location for the settings.xml file
 
     - name: Publish to Nexus OSSRH
