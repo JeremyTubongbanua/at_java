@@ -117,7 +117,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-gpg-plugin</artifactId>
-				<version>1.5</version>
+				<version>3.0.1</version>
 				<executions>
 					<execution>
 						<id>sign-artifacts</id>
@@ -126,8 +126,8 @@
 							<goal>sign</goal>
 						</goals>
 						<configuration>
-							<keyname>Jeremy Tubongbanua</keyname>
-							<passphraseServerId>Jeremy Tubongbanua</passphraseServerId>
+							<keyname>${gpg.keyname}</keyname>
+							<passphraseServerId>${gpg.keyname}</passphraseServerId>
 							<!-- Prevent gpg from using pinentry programs https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#extra-setup-for-pomxml -->
 							<gpgArguments>
 								<arg>--pinentry-mode</arg>

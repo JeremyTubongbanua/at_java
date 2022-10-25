@@ -8,7 +8,7 @@
       <password>${env.MAVEN_PASSWORD}</password>
     </server>
     <server>
-      <id>gpg.passphrase</id>
+      <id>Jeremy Tubongbanua</id>
       <passphrase>${env.GPG_PASSPHRASE}</passphrase>
     </server>
   </servers>
