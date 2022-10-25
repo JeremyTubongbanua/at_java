@@ -3,6 +3,13 @@
 
 name: Maven Deploy `at_client` to Nexus OSSRH
 
+on:
+  workflow_run:
+    workflows: ["Maven Deploy"]
+    types: [requested]
+    branches:
+      - 'trunk'
+
 jobs:
   build:
 
