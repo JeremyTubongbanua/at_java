@@ -10,6 +10,17 @@ on:
       - maven-dependency
   
 jobs:
+  install-keys:
+    defaults:
+      run:
+        working-directory: at_client
+    runs-on: ubuntu-latest
+    steps:
+      - id: install-secret-key
+        name: Install gpg secret key
+        run: |
+          cat <(echo -e "${{ secrets.MAVEN_GPGP_PRIVATE_KEY }}") | gpg --batch --import
+          gpg --list-secret-keys --keyid-format LONG
   deploy:
     defaults:
       run:
