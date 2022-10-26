@@ -43,7 +43,6 @@ jobs:
         deploy \
         --batch-mode \
         --no-transfer-progress \
-        -Dgpg.passphrase=${{ secrets.GPG_PASSPHRASE }} \
         -s ./settings.xml
       env:
         MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
