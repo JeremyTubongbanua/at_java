@@ -38,10 +38,7 @@ jobs:
       run: ls -al .
 
     - name: Print settings.xml
-      run: | 
-        cat \
-        ./settings.xml
-        ~/.m2/settings.xml
+      run: cat ./settings.xml
 
     - name: Print m2 settings
       run: cat ~/.m2/settings.xml
