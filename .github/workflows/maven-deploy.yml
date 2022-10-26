@@ -35,7 +35,7 @@ jobs:
         GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
     - name: Print folder
-      run: head -n 2 ./at_client/settings.xml
+      run: ls -al ./at_client
 
     - name: Publish to Apache Maven Central
       run: |
