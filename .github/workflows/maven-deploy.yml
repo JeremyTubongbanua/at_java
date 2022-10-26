@@ -24,7 +24,7 @@ jobs:
         distribution: 'adopt'
         server-id: ossrh # Value of the distributionManagement/repository/id field of the pom.xml
         overwrite-settings: true
-        settings-path: . # location for the settings.xml file
+        # settings-path: . # location for the settings.xml file
         server-username: "$MAVEN_USERNAME" # env variable for username in deploy
         server-password: "$MAVEN_PASSWORD" # env variable for token in deploy
         gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }} # Value of the GPG private key to import
@@ -41,6 +41,7 @@ jobs:
       run: cat ./settings.xml
 
     - name: Print m2 settings
+      continue-on-error: true
       run: cat ~/.m2/settings.xml
 
     - name: Publish to Apache Maven Central
@@ -48,8 +49,7 @@ jobs:
         mvn \
         deploy \
         --batch-mode \
-        --no-transfer-progress \
-        -s ./settings.xml
+        --no-transfer-progress
       env:
         MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
         MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
