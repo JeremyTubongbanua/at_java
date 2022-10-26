@@ -37,6 +37,9 @@ jobs:
     - name: Print folder
       run: ls -al .
 
+    - name: Print settings.xml
+      run: cat ./settings.xml
+
     - name: Publish to Apache Maven Central
       run: |
         mvn \
