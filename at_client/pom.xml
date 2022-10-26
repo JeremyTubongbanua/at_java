@@ -126,8 +126,6 @@
 							<goal>sign</goal>
 						</goals>
 						<configuration>
-							<keyname>gpg.passphrase</keyname>
-							<passphraseServerId>gpg.passphrase</passphraseServerId>
 							<!-- Prevent gpg from using pinentry programs https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#extra-setup-for-pomxml -->
 							<gpgArguments>
 								<arg>--pinentry-mode</arg>
