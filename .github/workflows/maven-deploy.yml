@@ -4,6 +4,7 @@
 name: Maven Deploy `at_client` to Nexus OSSRH
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - trunk
