@@ -30,6 +30,7 @@ The Java SDK can be added to your project through a compiled JAR or by Maven!
 ```
 
 ## Getting Started
+
 #### Note: Java and Maven are Prerequisites to use at_java
 
 Clone the at_java repo from GItHub using
