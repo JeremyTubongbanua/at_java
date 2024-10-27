@@ -5,7 +5,7 @@ on:
     branches:
       - trunk
 
-permissions:  # added using https://github.com/step-security/secure-workflows
+permissions:
   contents: read
 
 jobs:
@@ -15,41 +15,31 @@ jobs:
         working-directory: at_client
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+    - uses: actions/checkout@v4
+
     - name: Set up JDK 8
-      uses: actions/setup-java@8df1039502a15bceb9433410b1a100fbe190c53b # v4.5.0
+      uses: actions/setup-java@v4
       with:
         java-version: '8'
         distribution: 'adopt'
-        server-id: ossrh # Value of the distributionManagement/repository/id field of the pom.xml
-        server-username: ${{ secrets.MAVEN_USERNAME }} # Use the actual secret
-        server-password: ${{ secrets.MAVEN_PASSWORD }} # Use the actual secret
-        server-password-encrypted: false # Disable encryption
-        gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }} # Value of the GPG private key to import
-        gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }} # Use the actual secret
-        gpg-passphrase-encrypted: false # Disable encryption
+        server-id: ossrh
+        server-username: ${{ secrets.MAVEN_USERNAME }}
+        server-password: ${{ secrets.MAVEN_PASSWORD }}
+
+    - name: Import GPG key
+      run: |
+        echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --batch --import --no-tty --yes
       env:
-        MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
-        MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
-        GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
 
-    - name: Print folder
-      run: ls -al .
-
-    - name: Print m2 settings
-      continue-on-error: true
-      run: cat ~/.m2/settings.xml
+    - name: List GPG keys
+      run: |
+        gpg --list-secret-keys --keyid-format LONG
 
     - name: Publish to Apache Maven Central
       run: |
-        mvn \
-        install \
-        deploy \
-        --batch-mode \
-        --no-transfer-progress \
-        -Dgpg.skip=false \
-        -Dgpg.passphrase=${{ secrets.GPG_PASSPHRASE }}
-      env:
-        MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
-        MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
-        GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        mvn install deploy \
+          --batch-mode \
+          --no-transfer-progress \
+          -Dgpg.skip=false \
+          -Dgpg.passphrase="${{ secrets.GPG_PASSPHRASE }}"
